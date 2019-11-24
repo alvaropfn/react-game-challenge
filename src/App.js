@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import store from './store/store'
+import { Provider } from "react-redux";
+import KeyboardEventHandler from "react-keyboard-event-handler";
 
-function App() {
+import World from './components/world/world'
+
+function hitKey(key ) {
+  console.log('hitkey')
+  return {
+    type: 'HIT_KEY',
+    keyPressed: key
+  }
+}
+
+function App(keyPressed, dispatch) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Provider store = { store } >
+        <KeyboardEventHandler 
+          handleKeys={["all"]}
+          onKeyEvent={(key, e) => store.dispatch(hitKey(key))}
+        > 
+        {/* <World /> */}
+        </KeyboardEventHandler>
+      </Provider>
+    </Wrapper>
   );
 }
 
 export default App;
+
+const Wrapper = styled.section`
+  min-width: 360px;
+  max-width: 420px;
+  background-color: aqua;
+  min-height: 640px;
+  max-height: 740px;
+`;
