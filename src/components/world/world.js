@@ -13,8 +13,8 @@ function hitKey(key) {
   };
 }
 
-const World = ({ game }) => {
-  if (game.running) {
+const World = ({ state }) => {
+  if (state.isRunning) {
     return (
       <Wrapper>
         <img className="dinamic" src={bg_dinamic}></img>
@@ -50,4 +50,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default connect(state => ({ game: state.game }))(World);
+export default connect(state => ({ state: state }))(World);

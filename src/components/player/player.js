@@ -2,20 +2,21 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
-const player = ({player}) => {
+const player = ({state}) => {
     return (
-      <Wrapper>
-        {player.name}
+      <Wrapper isRunning={state.isRunning}>
+        {state.keyPressed}
       </Wrapper>
     )
 }
 const Wrapper = styled.section`
   width: 42px;
   height: 42px;
-  background-color: blue;
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  left: calc(50vw - 42px);
+  background-color: blue;
+  background-color: ${props => props.isRunning ? 'blue' : 'red'} ;
 `;
 
-export default connect(state => ({player: state.player}))(player)
+export default connect(state => ({state: state}))(player)

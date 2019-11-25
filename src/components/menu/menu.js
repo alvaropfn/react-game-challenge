@@ -2,20 +2,24 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
-const Menu = ({game}) => {
-  if(game.running) {
-    return (
-      <Wrapper>
-        <div className='menu'>Menu</div>
-      </Wrapper>
-    )
-  }
-  else return( <Wrapper />)
+
+const Menu = ({state}) => {
+  return (
+    <Wrapper isRunning={state.isRunning}>
+      <div className='menu' >
+        <p>is Game Running: </p>
+        <p>{state.isRunning.toString()}</p>
+      </div>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`
 
 .menu {
+  display: ${
+    props => !props.isRunning ? 'block': 'none'
+    };
   position: absolute;
   top: 120px;
   left: calc(50vw - 50px);
@@ -26,4 +30,4 @@ const Wrapper = styled.section`
 }
 `;
 
-export default connect(state =>({game: state.game}))(Menu)
+export default connect(state => ({state: state}))(Menu)

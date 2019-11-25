@@ -1,13 +1,11 @@
 import { createStore } from "redux";
 
 const INITIAL_STATE = {
-  keyPressed: "",
   player: {
     name: "nobody"
   },
-  game: {
-    running: false
-  }
+  keyPressed: "",
+  isRunning: false
 };
 
 function reducer(state = INITIAL_STATE, action) {
@@ -26,11 +24,17 @@ function reducer(state = INITIAL_STATE, action) {
 }
 
 function escHandler(state){
-  let resultGameState = state
-  const toggl = !resultGameState.game.running
-  resultGameState.game.running = toggl;
-  console.log(state.game)
-  return resultGameState
+  // let resultGameState = state
+  // const toggl = !resultGameState.game.running
+  // resultGameState.game.running = toggl;
+
+  // console.log(state.game) //TODO debug
+  // return resultGameState
+
+  return {
+    ...state,
+    isRunning: !state.isRunning
+  }
 }
 
 const store = createStore(reducer);
