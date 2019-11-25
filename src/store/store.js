@@ -1,23 +1,38 @@
-import {createStore} from 'redux'
+import { createStore } from "redux";
 
-const INITIAL_STATE ={
-  playerName: 'nobody',
+const INITIAL_STATE = {
   keyPressed: "",
-}
+  player: {
+    name: "nobody"
+  },
+  game: {
+    running: false
+  }
+};
 
 function reducer(state = INITIAL_STATE, action) {
-  
   switch (action.type) {
-    case 'HIT_KEY':
-      console.log(action) // TODO: Remove this
-      return {...state,
-        keyPressed: action.keyPressed
-      };
-  
-    default: return state;
+    case "hit_a":
+      return { ...state, keyPressed: action.key };
+    case "hit_s":
+      return { ...state, keyPressed: action.key };
+    case "hit_d":
+      return { ...state, keyPressed: action.key };
+    case "hit_esc":
+      return escHandler(state)
+    default:
+      return state;
   }
 }
 
-const store = createStore(reducer)
+function escHandler(state){
+  let resultGameState = state
+  const toggl = !resultGameState.game.running
+  resultGameState.game.running = toggl;
+  console.log(state.game)
+  return resultGameState
+}
 
-export default store
+const store = createStore(reducer);
+
+export default store;

@@ -1,29 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import store from './store/store'
+import store from "./store/store";
 import { Provider } from "react-redux";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 
-import World from './components/world/world'
 
-function hitKey(key ) {
-  console.log('hitkey')
+import World from "./components/world/world";
+import Menu from "./components/menu/menu";
+
+function hitKey(key) {
   return {
-    type: 'HIT_KEY',
-    keyPressed: key
-  }
+    type: `hit_${key}`,
+    key: key
+  };
 }
 
 function App(keyPressed, dispatch) {
   return (
     <Wrapper>
-      <Provider store = { store } >
-        <KeyboardEventHandler 
+      <Provider store={store}>
+        <KeyboardEventHandler
           handleKeys={["all"]}
           onKeyEvent={(key, e) => store.dispatch(hitKey(key))}
-        > 
-        {/* <World /> */}
-        </KeyboardEventHandler>
+        />
+        <World />
+        <Menu />
       </Provider>
     </Wrapper>
   );
