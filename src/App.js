@@ -9,7 +9,14 @@ import World from "./components/world/world";
 import Menu from "./components/menu/menu";
 
 function hitKey(e,key) {
-  e.preventDefault();
+  // Prevent some inconsistent behaves
+  switch (key) {
+    case 'up':
+    case 'down':
+      e.preventDefault();
+      break;
+    default: break;
+  }
   
   return {
     type: `hit_${key}`,

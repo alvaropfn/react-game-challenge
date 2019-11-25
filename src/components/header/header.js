@@ -2,11 +2,14 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
+import { MdMenu } from 'react-icons/md';
+
+
 
 const Header = ({state}) => {
   return (
     <Wrapper isRunning={state.isRunning}>
-      Header
+      Lets go for a <MdMenu />? 
     </Wrapper>
   )
 }
