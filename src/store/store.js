@@ -9,11 +9,15 @@ const INITIAL_STATE = {
 };
 
 function reducer(state = INITIAL_STATE, action) {
+  console.log(action.type) // TODO debug
   switch (action.type) {
-    case "hit_a":
+    case 'hit_left':
+    case 'hit_a':
       return { ...state, keyPressed: action.key };
+    case 'hit_down':
     case "hit_s":
       return { ...state, keyPressed: action.key };
+    case 'hit_right':
     case "hit_d":
       return { ...state, keyPressed: action.key };
     case "hit_esc":

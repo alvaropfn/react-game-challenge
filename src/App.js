@@ -4,11 +4,13 @@ import store from "./store/store";
 import { Provider } from "react-redux";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 
-
+import Header from "./components/header/header";
 import World from "./components/world/world";
 import Menu from "./components/menu/menu";
 
-function hitKey(key) {
+function hitKey(e,key) {
+  e.preventDefault();
+  
   return {
     type: `hit_${key}`,
     key: key
@@ -21,8 +23,9 @@ function App(keyPressed, dispatch) {
       <Provider store={store}>
         <KeyboardEventHandler
           handleKeys={["all"]}
-          onKeyEvent={(key, e) => store.dispatch(hitKey(key))}
+          onKeyEvent={(key, e) => store.dispatch(hitKey(e, key))}
         />
+        <Header />
         <World />
         <Menu />
       </Provider>
