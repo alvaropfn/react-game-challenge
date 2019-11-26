@@ -33,18 +33,23 @@ function reducer(state = INITIAL_STATE, action) {
 }
 
 function movHandle(state, key, dir) {
-  let pos;
-  switch (dir) {
-    case 'left':
-      pos = 20;
-      break;
-    case 'center':
-      pos = 48;
-      break;
-    case 'right':
-      pos = 80;
-      break;
-    default: break;
+  let pos = state.pos;
+  const posc = 48, posl= 20, posr = 80
+  if(state.isRunning) {
+    switch (dir) {
+      case 'left':
+        if(state.pos === posc) pos = 20
+        if(state.pos === posr) pos = 48
+        break;
+      case 'center':
+        pos = 48;
+        break;
+      case 'right':
+        if(state.pos === posl) pos = 48
+        if(state.pos === posc) pos = 80
+        break;
+      default: break;
+    }
   }
 
   return { ...state, keyPressed: key, pos: pos };

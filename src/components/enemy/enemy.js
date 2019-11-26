@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
-import car from './player.png'
-const player = ({state}) => {
+
+export class enemy extends Component {
+  render() {
     return (
-      <Wrapper pos={state.pos}>
-        <img src={car}></img>
-        {state.keyPressed}
-        {state.pos}
+      <Wrapper>
+        
       </Wrapper>
     )
+  }
 }
+
 const Wrapper = styled.section`
   width: 96px;
   height: 96px;
@@ -20,7 +21,5 @@ const Wrapper = styled.section`
   ${'' /* left: calc(${ props => props.pos }vw - 96px); */}
   transition: all 1s;
   left: calc(${ props => props.pos }vw - 96px);
-
 `;
-
-export default connect(state => ({state: state}))(player)
+export default enemy
