@@ -2,21 +2,24 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
+import car from './player.png'
 const player = ({state}) => {
     return (
-      <Wrapper isRunning={state.isRunning}>
+      <Wrapper pos={state.pos}>
+        <img src={car}></img>
         {state.keyPressed}
+        {state.pos}
       </Wrapper>
     )
 }
 const Wrapper = styled.section`
-  width: 42px;
-  height: 42px;
+  width: 96px;
+  height: 96px;
   position: absolute;
   bottom: 0;
-  left: calc(50vw - 42px);
-  background-color: blue;
-  background-color: ${props => props.isRunning ? 'blue' : 'red'} ;
+  ${'' /* left: ${ props => props.pos }px ; */}
+  left: calc(${ props => props.pos }vw - 96px) ;
+
 `;
 
 export default connect(state => ({state: state}))(player)

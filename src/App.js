@@ -9,6 +9,7 @@ import World from "./components/world/world";
 import Menu from "./components/menu/menu";
 
 function hitKey(e,key) {
+
   // Prevent some inconsistent behaves
   switch (key) {
     case 'up':
@@ -45,7 +46,7 @@ export default App;
 const Wrapper = styled.section`
   min-width: 360px;
   max-width: 420px;
-  background-color: aqua;
+  background-color: #00b4f7;
   min-height: 640px;
   max-height: 740px;
 `;

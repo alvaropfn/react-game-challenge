@@ -1,9 +1,11 @@
 import { createStore } from "redux";
 
+
+// positaions 20 48 80
 const INITIAL_STATE = {
-  player: {
-    name: "nobody"
-  },
+  pos: 20,
+  playerName: "nobody",
+  playerScore: 0,
   keyPressed: "",
   isRunning: false
 };
@@ -13,13 +15,16 @@ function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'hit_left':
     case 'hit_a':
-      return { ...state, keyPressed: action.key };
+      return movHandle(state, action.key, 'left')
+
     case 'hit_down':
     case "hit_s":
-      return { ...state, keyPressed: action.key };
+      return movHandle(state, action.key, 'center')
+
     case 'hit_right':
     case "hit_d":
-      return { ...state, keyPressed: action.key };
+      return movHandle(state, action.key, 'right')
+
     case "hit_esc":
       return escHandler(state)
     default:
@@ -27,14 +32,25 @@ function reducer(state = INITIAL_STATE, action) {
   }
 }
 
-function escHandler(state){
-  // let resultGameState = state
-  // const toggl = !resultGameState.game.running
-  // resultGameState.game.running = toggl;
+function movHandle(state, key, dir) {
+  let pos;
+  switch (dir) {
+    case 'left':
+      pos = 20;
+      break;
+    case 'center':
+      pos = 48;
+      break;
+    case 'right':
+      pos = 80;
+      break;
+    default: break;
+  }
 
-  // console.log(state.game) //TODO debug
-  // return resultGameState
+  return { ...state, keyPressed: key, pos: pos };
+}
 
+function escHandler(state) {
   return {
     ...state,
     isRunning: !state.isRunning
