@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from "styled-components";
+import styled from "styled-components"
 import { connect } from 'react-redux'
+import store from "../../store/store"
 
 const Header = ({state}) => {
   return (
@@ -16,6 +17,9 @@ const Wrapper = styled.section`
   height: 36px;
   display: grid;
   padding-bottom: 10px;
+  color: #FFF;
+  background-color: #00B4F7;
+  font-size: 1.2em;
   
   grid-template-areas:
     "name divider score";

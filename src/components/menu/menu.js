@@ -17,11 +17,15 @@ function returnClick (){
   };
 }
 
+function restartGame() {
+  return {type: 'restartGame'}
+}
+
 const Menu = ({state}, dispatch) => {
   return (
     <Wrapper game={{...state.game}}>
       <div className='menu' >
-        <button onClick={restartClick}>Restart</button>
+        <button onClick={() => store.dispatch(restartGame())}>Restart</button>
         <button onClick={scoreboardClick}>Scoreboard</button>
         <button onClick={() => store.dispatch(returnClick())}>Return</button>
       </div>

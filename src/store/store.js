@@ -41,8 +41,11 @@ function reducer(state = INITIAL_STATE, action) {
     case "splashGame":
       return splashGame(state, action.playerName)
 
-      case "startGame":
+    case "startGame":
       return startGame(state)
+    
+    case "restartGame": 
+      return restartGame(state)
     default:
       return state;
   }
@@ -50,7 +53,7 @@ function reducer(state = INITIAL_STATE, action) {
 function splashGame(state, playerName){
   const toReturn = {
     ...state,
-    playerName: {...state.player,
+    player: {...state.player,
       name: playerName
     },
     game: {...state.game,
@@ -74,6 +77,11 @@ function startGame(state){
       menuScreen: false,
     },
   }
+}
+
+function restartGame(){
+  console.log('startGame')
+  return { ...INITIAL_STATE }
 }
 
 function movHandle(state, key, dir) {

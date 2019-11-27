@@ -9,6 +9,7 @@ import World from "./components/world/world"
 import Form from "./components/form/form"
 import Splash from "./components/splash/splash"
 import Menu from "./components/menu/menu"
+import Controls from "./components/controls/controls"
 
 function hitKey(e,key) {
 
@@ -47,6 +48,7 @@ function App(keyPressed, dispatch) {
         <Form />
         <Splash />
         <Menu />
+        <Controls />
       </Provider>
     </Wrapper>
   );

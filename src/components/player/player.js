@@ -7,8 +7,6 @@ const player = ({state}) => {
     return (
       <Wrapper player={{...state.player}} carSize={state.carSize}>
         <img src={car}></img>
-        {state.keyPressed}
-        {state.player.pos}
       </Wrapper>
     )
 }
