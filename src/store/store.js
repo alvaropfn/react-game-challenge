@@ -3,19 +3,21 @@ import { createStore } from "redux";
 
 // positaions 20 48 80
 const INITIAL_STATE = {
-  pos: 0,
-  playerName: "nobody",
-  playerScore: 0,
+  player: {
+    name: 'nobody',
+    score: 0,
+    pos: 152,
+  },
   keyPressed: "",
   game: {
     isRunning: true,
     meters: 0,
   },
-  carState:{carSize: 96,}
+  carSize: 96,
 };
 
 function reducer(state = INITIAL_STATE, action) {
-  console.log(action.type) // TODO debug
+  // console.log(action.type) // TODO debug
   switch (action.type) {
     case 'hit_left':
     case 'hit_a':
@@ -37,26 +39,30 @@ function reducer(state = INITIAL_STATE, action) {
 }
 
 function movHandle(state, key, dir) {
-  let pos = state.pos;
+  let pos = state.player.pos;
   const posl= 0, posc = 152,posr = 312
-  if(state.isRunning) {
+  if(state.game.isRunning) {
     switch (dir) {
       case 'left':
-        if(state.pos === posc) pos = posl
-        if(state.pos === posr) pos = posc
+        if(state.player.pos === posc) pos = posl
+        if(state.player.pos === posr) pos = posc
         break;
       case 'center':
-        pos = posc;
+        state.player.pos = posc;
         break;
       case 'right':
-        if(state.pos === posl) pos = posc
-        if(state.pos === posc) pos = posr
+        if(state.player.pos === posl) pos = posc
+        if(state.player.pos === posc) pos = posr
         break;
       default: break;
     }
   }
 
-  return { ...state, keyPressed: key, pos: pos };
+  return {
+    ...state,
+    keyPressed: key,
+    player: { ...state.player, pos: pos }
+  };
 }
 
 function escHandler(state) {

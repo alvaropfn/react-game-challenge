@@ -5,14 +5,20 @@ import { connect } from 'react-redux'
 function restartClick (shit){
   console.log('restartClick')
 }
+function scoreboardClick (shit){
+  console.log('scoreboardClick')
+}
+function returnClick (shit){
+  console.log('returnClick')
+}
 
 const Menu = ({state}) => {
   return (
     <Wrapper game={{...state.game}}>
       <div className='menu' >
         <button onClick={restartClick}>Restart</button>
-        <button>Rename</button>
-        <button>Storeboard</button>
+        <button onClick={scoreboardClick}>Scoreboard</button>
+        <button onClick={returnClick}>Return</button>
         {/* <p>{state.game.isRunning.toString()}</p> */}
       </div>
     </Wrapper>

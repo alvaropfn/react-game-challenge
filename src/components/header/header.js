@@ -2,16 +2,12 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
-import { MdMenu } from 'react-icons/md';
-
-
-
 const Header = ({state}) => {
   return (
-    <Wrapper isRunning={state.isRunning}>
-       <p className='name'> Player: {state.playerName}</p>
+    <Wrapper>
+       <p className='name'> Player: {state.player.name}</p>
        <p className='divider'>|</p>
-       <p className='score'>Score: {state.playerScore}</p>
+       <p className='score'>Score: {state.player.score}</p>
     </Wrapper>
   )
 }
