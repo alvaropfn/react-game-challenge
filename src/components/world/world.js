@@ -14,11 +14,16 @@ function hitKey(key) {
   };
 }
 
-const World = ({ state }) => {
-  if (state.isRunning) {
+function passTime(){
+
+}
+
+const World = ({state}) => {
+  if (state.game.isRunning) {
     return (
       <Wrapper>
         <img className="dinamic" src={bg_dinamic}></img>
+        <Enemy />
         <Player />
       </Wrapper>
     );
@@ -27,7 +32,6 @@ const World = ({ state }) => {
       <Wrapper>
         <img className="static" src={bg_static}></img>
         <Player />
-        <Enemy />
       </Wrapper>
     );
   }

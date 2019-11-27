@@ -2,15 +2,18 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
+function restartClick (shit){
+  console.log('restartClick')
+}
 
 const Menu = ({state}) => {
   return (
-    <Wrapper isRunning={state.isRunning}>
+    <Wrapper game={{...state.game}}>
       <div className='menu' >
-        <button>Restart</button>
+        <button onClick={restartClick}>Restart</button>
         <button>Rename</button>
         <button>Storeboard</button>
-        <p>{state.isRunning.toString()}</p>
+        {/* <p>{state.game.isRunning.toString()}</p> */}
       </div>
     </Wrapper>
   )
@@ -20,7 +23,7 @@ const Wrapper = styled.section`
 
 .menu {
   display: ${
-    props => !props.isRunning ? 'block': 'none'
+    props => !props.game.isRunning ? 'flex': 'none'
     };
   position: absolute;
   top: 48px;
@@ -32,7 +35,6 @@ const Wrapper = styled.section`
   width: 200px;
   height: 300px;
   color: #FFF;
-  display: flex;
   flex-flow: column;
   justify-content: space-around;
   

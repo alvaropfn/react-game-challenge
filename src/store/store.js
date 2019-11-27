@@ -7,7 +7,10 @@ const INITIAL_STATE = {
   playerName: "nobody",
   playerScore: 0,
   keyPressed: "",
-  isRunning: false,
+  game: {
+    isRunning: true,
+    meters: 0,
+  },
   carState:{carSize: 96,}
 };
 
@@ -59,7 +62,7 @@ function movHandle(state, key, dir) {
 function escHandler(state) {
   return {
     ...state,
-    isRunning: !state.isRunning
+    game: {...state.game, isRunning: !state.game.isRunning}
   }
 }
 
