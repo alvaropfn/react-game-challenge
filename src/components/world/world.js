@@ -19,23 +19,15 @@ function passTime(){
 }
 
 const World = ({state}) => {
-  if (state.game.isRunning) {
-    return (
-      <Wrapper>
-        <img className="dinamic" src={bg_dinamic}></img>
-        <Enemy />
-        <Player />
-      </Wrapper>
-    );
-  } else {
-    return (
-      <Wrapper>
-        <img className="static" src={bg_static}></img>
-        <Player />
-      </Wrapper>
-    );
-  }
-};
+  return (
+    <Wrapper isRunning={state.game.isRunning}>
+      <img className="static" src={bg_static}></img>
+      <img className="dinamic" src={bg_dinamic}></img>
+      <Enemy size={12} posx={180} posy={208}/>
+      <Player />
+    </Wrapper>
+  )
+}
 
 const Wrapper = styled.section`
   width: 100%;
@@ -48,9 +40,11 @@ const Wrapper = styled.section`
     width: 100%;
 
     &.static {
+      display: ${ props => props.isRunning ? 'none': 'grid' };
       background-image: url(${bg_static});
     }
     &.dinamic {
+      display: ${ props => props.isRunning ? 'grid': 'none' };
       background-image: url(${bg_dinamic});
     }
   }
