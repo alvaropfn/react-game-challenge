@@ -38,13 +38,16 @@ function reducer(state = INITIAL_STATE, action) {
     case "run_scene":
       return moveFoward(state)
 
-    case "startGame":
-      return startGame(state, action.playerName)
+    case "splashGame":
+      return splashGame(state, action.playerName)
+
+      case "startGame":
+      return startGame(state)
     default:
       return state;
   }
 }
-function startGame(state, playerName){
+function splashGame(state, playerName){
   const toReturn = {
     ...state,
     playerName: {...state.player,
@@ -57,8 +60,20 @@ function startGame(state, playerName){
       menuScreen: false,
     },
   }
-  console.log(toReturn)
   return toReturn
+}
+
+function startGame(state){
+  console.log('startGame')
+  return {
+    ...state,
+    game: {...state.game,
+      isRunning: true,
+      formScreen: false,
+      splashScreen: false,
+      menuScreen: false,
+    },
+  }
 }
 
 function movHandle(state, key, dir) {
@@ -89,15 +104,17 @@ function movHandle(state, key, dir) {
 }
 
 function escHandler(state) {
-
-  if(!state.game.formScreen || !state.game.splashScreen) 
-    return { ...state}
-  else
+  console.log(!state.game.formScreen, !state.game.splashScreen)
+  if(state.game.formScreen || state.game.splashScreen)
+    return {...state}
+  else {
+    
     return {
-    ...state,
-    game: {...state.game, 
-      isRunning: !state.game.isRunning,
-      menuScreen: !state.game.menuScreen,
+      ...state,
+      game: {...state.game, 
+        isRunning: !state.game.isRunning,
+        menuScreen: !state.game.menuScreen,
+      }
     }
   }
 }
@@ -109,7 +126,6 @@ function moveFoward(state) {
   if(state.game.isRunning 
     && now >= state.game.now +51
     ) {
-    console.log(now)
     meters +=1
     score +=1
   }

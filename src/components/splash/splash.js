@@ -4,31 +4,50 @@ import { connect } from "react-redux";
 import store from "../../store/store"
 
 const Splash = ({state}) => {
-  
-  const [count, setCount] = useState(0);
+  const getDate = () => new Date().getTime() + 4000
+  const [startDate, setDate] = useState(getDate);
+  const [counting, setCount] = useState(false);
+  const startGame = () => {
+    console.log('dispatch')
+    store.dispatch({type: 'startGame'})
+  }
 
-  const countDown = () =>{
+  const countDown = () => {
+    let toReturn = {
+        startDate: 0,
+        seconds: 0,
+      }
 
-    var countDownDate = new Date().getTime() + 3;
-    // Get today's date and time
-    var now = new Date().getTime();
-  
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    return {
-      countDownDate: countDownDate,
-      seconds: seconds,
+    if(store.getState().game.splashScreen && !counting){
+      setCount(!counting)
+      setDate(getDate())
     }
+    else{
+      var now = new Date().getTime();
+      // Find the distance between now and the count down date
+      var distance = startDate - now;
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      toReturn = {
+        startDate: startDate,
+        seconds: seconds,
+      }
+
+      if(counting && distance <= 0 ){
+        setCount(false)
+        startGame()
+      }
+    }
+    
+    return toReturn
   }
 
   return (
     <Wrapper game={{...state.game}}>
-      <p>{countDown().countDownDate}</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
+      <p>{countDown().seconds}</p>
+
+      <button onClick={ () => startGame()}>
+        skip
       </button>
-      <p>{count}</p>
     </Wrapper>
   )
 }
@@ -47,6 +66,19 @@ const Wrapper = styled.section`
   color: #FFF;
   flex-flow: column;
   justify-content: space-around;
+  p{
+    text-align: center;
+    font-size: 5em;
+    margin: 5px auto;
+  }
+  button {
+    color: #FFF;
+    background-color: #00B4F7;
+    align-self: center;
+    width: 100%;
+    height: 2.5em;
+    border-radius: 12px;
+  }
 `;
 
 export default connect(state => ({state: state}))(Splash)

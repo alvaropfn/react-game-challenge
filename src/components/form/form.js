@@ -8,9 +8,8 @@ function handleSubmit(event) {
 
   const playerName = event.target.children[0].value
 
-  console.log();
   store.dispatch({
-    type: 'startGame',
+    type: 'splashGame',
     playerName: playerName,
   })
 }

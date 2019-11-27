@@ -27,7 +27,6 @@ function hitKey(e,key) {
   };
 }
 
-
 function runScene() {
   store.dispatch({type: 'run_scene'})
 }
