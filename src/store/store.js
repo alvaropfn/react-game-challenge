@@ -1,7 +1,5 @@
 import { createStore } from "redux";
 
-
-// positaions 20 48 80
 const INITIAL_STATE = {
   player: {
     name: 'nobody',
@@ -10,14 +8,17 @@ const INITIAL_STATE = {
   },
   keyPressed: "",
   game: {
-    isRunning: true,
+    isRunning: false,
+    formScreen: true,
+    splashScreen: false,
+    menuScreen: false,
     meters: 0,
+    now: 0,
   },
   carSize: 96,
 };
 
 function reducer(state = INITIAL_STATE, action) {
-  // console.log(action.type) // TODO debug
   switch (action.type) {
     case 'hit_left':
     case 'hit_a':
@@ -33,9 +34,31 @@ function reducer(state = INITIAL_STATE, action) {
 
     case "hit_esc":
       return escHandler(state)
+
+    case "run_scene":
+      return moveFoward(state)
+
+    case "startGame":
+      return startGame(state, action.playerName)
     default:
       return state;
   }
+}
+function startGame(state, playerName){
+  const toReturn = {
+    ...state,
+    playerName: {...state.player,
+      name: playerName
+    },
+    game: {...state.game,
+      isRunning: false,
+      formScreen: false,
+      splashScreen: true,
+      menuScreen: false,
+    },
+  }
+  console.log(toReturn)
+  return toReturn
 }
 
 function movHandle(state, key, dir) {
@@ -48,7 +71,7 @@ function movHandle(state, key, dir) {
         if(state.player.pos === posr) pos = posc
         break;
       case 'center':
-        state.player.pos = posc;
+        pos = posc;
         break;
       case 'right':
         if(state.player.pos === posl) pos = posc
@@ -66,12 +89,41 @@ function movHandle(state, key, dir) {
 }
 
 function escHandler(state) {
-  return {
+
+  if(!state.game.formScreen || !state.game.splashScreen) 
+    return { ...state}
+  else
+    return {
     ...state,
-    game: {...state.game, isRunning: !state.game.isRunning}
+    game: {...state.game, 
+      isRunning: !state.game.isRunning,
+      menuScreen: !state.game.menuScreen,
+    }
   }
 }
 
-const store = createStore(reducer);
+function moveFoward(state) {
+  let now = Date.now()
+  let meters = state.game.meters
+  let score = state.player.score
+  if(state.game.isRunning 
+    && now >= state.game.now +51
+    ) {
+    console.log(now)
+    meters +=1
+    score +=1
+  }
+  
+  return {
+    ...state,
+    game: {...state.game, meters: meters, now: now},
+    player: {...state.player, score: score},
+  }
+}
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

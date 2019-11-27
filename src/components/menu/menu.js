@@ -24,7 +24,6 @@ const Menu = ({state}, dispatch) => {
         <button onClick={restartClick}>Restart</button>
         <button onClick={scoreboardClick}>Scoreboard</button>
         <button onClick={() => store.dispatch(returnClick())}>Return</button>
-        {/* <p>{state.game.isRunning.toString()}</p> */}
       </div>
     </Wrapper>
   )
@@ -34,7 +33,7 @@ const Wrapper = styled.section`
 
 .menu {
   display: ${
-    props => !props.game.isRunning ? 'flex': 'none'
+    props => props.game.menuScreen ? 'flex': 'none'
     };
   position: absolute;
   top: 48px;

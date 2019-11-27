@@ -1,12 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import store from "./store/store";
-import { Provider } from "react-redux";
-import KeyboardEventHandler from "react-keyboard-event-handler";
+import React from "react"
+import styled from "styled-components"
+import store from "./store/store"
+import { Provider } from "react-redux"
+import KeyboardEventHandler from "react-keyboard-event-handler"
 
-import Header from "./components/header/header";
-import World from "./components/world/world";
-import Menu from "./components/menu/menu";
+import Header from "./components/header/header"
+import World from "./components/world/world"
+import Form from "./components/form/form"
+import Splash from "./components/splash/splash"
+import Menu from "./components/menu/menu"
 
 function hitKey(e,key) {
 
@@ -14,7 +16,7 @@ function hitKey(e,key) {
   switch (key) {
     case 'up':
     case 'down':
-      e.preventDefault();
+      e.preventDefault()
       break;
     default: break;
   }
@@ -25,7 +27,15 @@ function hitKey(e,key) {
   };
 }
 
+
+function runScene() {
+  store.dispatch({type: 'run_scene'})
+}
+
 function App(keyPressed, dispatch) {
+  
+  window.setInterval(runScene, 50);
+
   return (
     <Wrapper>
       <Provider store={store}>
@@ -35,6 +45,8 @@ function App(keyPressed, dispatch) {
         />
         <Header />
         <World />
+        <Form />
+        <Splash />
         <Menu />
       </Provider>
     </Wrapper>

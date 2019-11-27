@@ -18,16 +18,14 @@ export class enemy extends Component {
     this.state = {...props, color: randomColor()}
   }
 
-  render() {
-    return (
-      <Wrapper carState={
-        pathCalc(this.state.posx,this.state.posy,this.state.size)}
-          color={this.state.color}
-        >
-        <img src={car}></img>
-      </Wrapper>
-    )
-  }
+  render() { return (
+    <Wrapper carState={
+      pathCalc(this.state.posx,this.state.posy,this.state.size)}
+        color={this.state.color}
+      >
+      <img src={car}></img>
+    </Wrapper>
+  )}
 }
 
 const Wrapper = styled.section`
