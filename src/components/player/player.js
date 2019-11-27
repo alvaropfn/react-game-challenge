@@ -2,10 +2,10 @@ import React from 'react'
 import styled from "styled-components";
 import { connect } from 'react-redux'
 
-import car from './player.png'
+import car from '../../assets/car.png'
 const player = ({state}) => {
     return (
-      <Wrapper pos={state.pos}>
+      <Wrapper carState={{...state}}>
         <img src={car}></img>
         {state.keyPressed}
         {state.pos}
@@ -13,13 +13,13 @@ const player = ({state}) => {
     )
 }
 const Wrapper = styled.section`
-  width: 96px;
+  width: ${ props => props.carState.carState.carSize }px;
   height: 96px;
   position: absolute;
   bottom: 0;
   ${'' /* left: calc(${ props => props.pos }vw - 96px); */}
   transition: all 1s;
-  left: calc(${ props => props.pos }vw - 96px);
+  left: calc(${ props => props.carState.pos }px );
 
 `;
 

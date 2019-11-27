@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import Player from "../player/player";
+import Enemy from "../enemy/enemy";
 
-import bg_dinamic from "./world.gif";
-import bg_static from "./world.jpg";
+import bg_dinamic from "../../assets/world.gif";
+import bg_static from "../../assets/world.jpg";
 
 function hitKey(key) {
   return {
@@ -26,6 +27,7 @@ const World = ({ state }) => {
       <Wrapper>
         <img className="static" src={bg_static}></img>
         <Player />
+        <Enemy />
       </Wrapper>
     );
   }

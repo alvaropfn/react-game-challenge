@@ -3,11 +3,12 @@ import { createStore } from "redux";
 
 // positaions 20 48 80
 const INITIAL_STATE = {
-  pos: 20,
+  pos: 0,
   playerName: "nobody",
   playerScore: 0,
   keyPressed: "",
-  isRunning: false
+  isRunning: false,
+  carState:{carSize: 96,}
 };
 
 function reducer(state = INITIAL_STATE, action) {
@@ -34,19 +35,19 @@ function reducer(state = INITIAL_STATE, action) {
 
 function movHandle(state, key, dir) {
   let pos = state.pos;
-  const posc = 48, posl= 20, posr = 80
+  const posl= 0, posc = 152,posr = 312
   if(state.isRunning) {
     switch (dir) {
       case 'left':
-        if(state.pos === posc) pos = 20
-        if(state.pos === posr) pos = 48
+        if(state.pos === posc) pos = posl
+        if(state.pos === posr) pos = posc
         break;
       case 'center':
-        pos = 48;
+        pos = posc;
         break;
       case 'right':
-        if(state.pos === posl) pos = 48
-        if(state.pos === posc) pos = 80
+        if(state.pos === posl) pos = posc
+        if(state.pos === posc) pos = posr
         break;
       default: break;
     }
