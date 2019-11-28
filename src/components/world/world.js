@@ -21,6 +21,20 @@ const World = ({state}) => {
         dis={store.getState().game.meters}
         dir="left"
       />
+      <Enemy 
+        size={12}
+        posx={195}
+        posy={208}
+        dis={store.getState().game.meters}
+        dir="center"
+      />
+      <Enemy 
+        size={12}
+        posx={206}
+        posy={208}
+        dis={store.getState().game.meters}
+        dir="right"
+      />
       <Player />
     </Wrapper>
   )

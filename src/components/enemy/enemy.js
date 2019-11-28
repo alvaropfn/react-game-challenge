@@ -20,7 +20,18 @@ export class enemy extends Component {
   pathLeft = (posx, posy, dis) => {
     let y = posy - 2 * dis
     let x = (y - 1) / 1.15
-    console.log(x, y)
+    return {x: x, y: y }
+  }
+
+  pathCenter = (posx, posy, dis) => {
+    let y = posy - 2 * dis
+    let x = (y + 735) / 4.84
+    return {x: x, y: y }
+  }
+
+  pathRight = (posx, posy, dis) => {
+    let y = posy - 2 * dis
+    let x = (y - 611) / (-1.96)
     return {x: x, y: y }
   }
 
@@ -28,10 +39,17 @@ export class enemy extends Component {
     const dis = this.props.dis - this.state.dis
     const carSize = store.getState().carSize
     s = s+dis <= carSize ? s+dis : carSize
+    let result
+    switch (this.state.dir) {
+      case 'left': result = this.pathLeft(x, y, dis)
+        break;
+      case 'center': result = this.pathCenter(x, y, dis)
+        break;
+      case 'right': result = this.pathRight(x, y, dis)
+        break;
+      default: break;
+    }
 
-
-    const result = this.pathLeft(x, y, dis)
-    console.log(result)
     return {posx: result.x, posy: result.y, size: s};
   }
 
