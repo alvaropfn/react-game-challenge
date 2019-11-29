@@ -78,7 +78,13 @@ const Wrapper = styled.section`
   width: 100%;
   background-color: red;
   position: relative;
-
+  border-radius: 0
+  border: 0.2em solid white;
+  border-top: 0;
+  border-bottom: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   img {
     position: relative;
     height: auto;

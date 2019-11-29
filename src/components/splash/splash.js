@@ -55,7 +55,7 @@ const Splash = ({state}) => {
 const Wrapper = styled.section`
   display: ${props => props.game.splashScreen ? "flex" : "none"};
   position: absolute;
-  top: 48px;
+  top: 61px;
   padding: 0.5em; 
   border-radius: 25px 5px
   border: 0.2em solid white;

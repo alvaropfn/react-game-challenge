@@ -20,7 +20,9 @@ const Wrapper = styled.section`
   color: #FFF;
   background-color: #00B4F7;
   font-size: 1.2em;
-  
+  border-radius: 25px 25px 0 0
+  border: 0.2em solid white;
+
   grid-template-areas:
     "name divider score";
   grid-template-columns: 5fr 1fr 5fr;

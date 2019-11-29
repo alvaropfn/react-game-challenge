@@ -86,7 +86,7 @@ export class enemy extends Component {
         color={this.state.color}
       >
       <img src={car}></img>
-      <p>{this.state.dis}</p>
+      {/* <p>{this.state.dis}</p> */}
     </Wrapper>
   )}
 }

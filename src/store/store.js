@@ -8,8 +8,8 @@ const INITIAL_STATE = {
   },
   keyPressed: "",
   game: {
-    isRunning: true,
-    formScreen: false,
+    isRunning: false,
+    formScreen: true,
     splashScreen: false,
     menuScreen: false,
     meters: 0,
