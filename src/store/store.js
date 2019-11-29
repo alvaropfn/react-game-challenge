@@ -8,8 +8,8 @@ const INITIAL_STATE = {
   },
   keyPressed: "",
   game: {
-    isRunning: false,
-    formScreen: true,
+    isRunning: true,
+    formScreen: false,
     splashScreen: false,
     menuScreen: false,
     meters: 0,
@@ -112,7 +112,6 @@ function movHandle(state, key, dir) {
 }
 
 function escHandler(state) {
-  console.log(!state.game.formScreen, !state.game.splashScreen)
   if(state.game.formScreen || state.game.splashScreen)
     return {...state}
   else {
@@ -132,7 +131,7 @@ function moveFoward(state) {
   let meters = state.game.meters
   let score = state.player.score
   if(state.game.isRunning 
-    && now >= state.game.now +51
+    && now >= state.game.now +25
     ) {
     meters +=1
     score +=1
