@@ -6,7 +6,7 @@ import car from '../../assets/car.png'
 const player = ({state}) => {
     return (
       <Wrapper player={{...state.player}} carSize={state.carSize}>
-        <img src={car}></img>
+        <img src={car} alt="Upnid Blue Car"></img>
       </Wrapper>
     )
 }

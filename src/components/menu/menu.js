@@ -3,14 +3,11 @@ import styled from "styled-components";
 import { connect } from 'react-redux'
 import store from "../../store/store";
 
-function restartClick (shit){
-  console.log('restartClick')
-}
-function scoreboardClick (shit){
-  console.log('scoreboardClick')
+
+function scoreboardClick (){
+  console.log("TODO: scoreboard")
 }
 function returnClick (){
-  console.log('returnClick')
   return {
     type: `hit_esc`,
     key: `esc`

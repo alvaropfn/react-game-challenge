@@ -8,7 +8,6 @@ const Splash = ({state}) => {
   const [startDate, setDate] = useState(getDate);
   const [counting, setCount] = useState(false);
   const startGame = () => {
-    console.log('dispatch')
     store.dispatch({type: 'startGame'})
   }
 

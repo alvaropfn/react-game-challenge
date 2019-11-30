@@ -62,4 +62,5 @@ const Wrapper = styled.section`
   background-color: #00b4f7;
   min-height: 640px;
   max-height: 740px;
+  border-radius: 25px;
 `;

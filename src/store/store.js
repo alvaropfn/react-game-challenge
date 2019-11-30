@@ -67,7 +67,6 @@ function splashGame(state, playerName){
 }
 
 function startGame(state){
-  console.log('startGame')
   return {
     ...state,
     game: {...state.game,
@@ -80,7 +79,6 @@ function startGame(state){
 }
 
 function restartGame(){
-  console.log('startGame')
   return { ...INITIAL_STATE }
 }
 
@@ -131,7 +129,7 @@ function moveFoward(state) {
   let meters = state.game.meters
   let score = state.player.score
   if(state.game.isRunning 
-    && now >= state.game.now +25
+    && now >= state.game.now +50
     ) {
     meters +=1
     score +=1

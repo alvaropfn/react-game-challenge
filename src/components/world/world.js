@@ -36,13 +36,7 @@ const World = ({state}) => {
     const start = minMaxRandom(min, min + 300)
     return start
   }
-
-  // const enemys = [
-  //   {size:12,
-  //     posx = 
-  //   },
-  // ]
-
+  
   return (
     <Wrapper isRunning={state.game.isRunning}>
       <img className="static" src={bg_static}></img>

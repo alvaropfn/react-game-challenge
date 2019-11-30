@@ -75,10 +75,14 @@ export class enemy extends Component {
     )
 
     if(carState.posy <= this.state.minh ){
-      this.state.color = randomColor();
+      this.setState({
+        color: randomColor()
+      });
       const min = store.getState().game.meters
       const max = min + 350;
-      this.state.dis = Math.floor(Math.random() * (max - min))+min
+      this.setState({
+        dis : Math.floor(Math.random() * (max - min))+min
+      })
     }
     return (
     <Wrapper carState={carState}

@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import store from "../../store/store"
 
-function handleSubmit(event) {
-  event.preventDefault();
-
-  const playerName = event.target.children[0].value
-
-  store.dispatch({
-    type: 'splashGame',
-    playerName: playerName,
-  })
-}
-
 const Form = ({state }) => {
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    const playerName = event.target.children[0].value
+    
+    if(playerName.trim() === "")
+      invalidName()
+    else {
+      validName()
+      store.dispatch({
+        type: 'splashGame',
+        playerName: playerName,
+      })
+    }
+  }
+  
+  function invalidName() {
+    setValidName(false)
+  }
+  
+  function validName() {
+    setValidName(true)
+  }
+
+  const [nameValid, setValidName] = useState(true);
   return (
-    <Wrapper player={state.player} game={state.game}>
-      <h1>Insert your Name</h1>
+    <Wrapper player={state.player} game={state.game} name={{valid: nameValid}}>
+      <div>
+        <h1>Insert your Name</h1>
+        <p className="info">Invalid name</p>
+      </div>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="insert your name" />
-        <button type="submit">Send</button>
+        <div>
+          
+          <button type="submit">Send</button>
+        </div>
       </form>
     </Wrapper>
   );
@@ -40,9 +60,13 @@ const Wrapper = styled.section`
   color: #FFF;
   flex-flow: column;
   justify-content: space-around;
-
+  text-align: center;
   h1{
     color: #00B4F7;
+  }
+  .info {
+    color: ${props => props.name.valid ? '#0000' : '#F00A'};
+    margin: 5px auto;
   }
 
   form {

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
 import { connect } from 'react-redux'
-import store from "../../store/store"
 
 const Header = ({state}) => {
   return (

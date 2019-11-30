@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![game sample](game-sample.png)
 
+availble on [react-game-challenge](https://react-game-challenge.herokuapp.com/)
+
 ## Available Scripts
 all the scripts are referenced in package-json
 they could be instaled througth the command
@@ -38,6 +40,6 @@ This is a prototype of a game made for [Upnid](https://www.googleadservices.com/
 ## For Future
 
 + made some optimizations to stop the frame rate drops
++ have an usefull speed booster
 + add colision to enemys
-+ put the game to run on a server
 + finish a online leaderboard 
